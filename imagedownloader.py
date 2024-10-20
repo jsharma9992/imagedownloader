@@ -11,14 +11,14 @@ from icrawler.builtin import GoogleImageCrawler
 def download_images(query, num_images):
     crawler = GoogleImageCrawler(storage={"root_dir": "downloads"})
     
-    # Start crawling images
+   
     try:
         crawler.crawl(keyword=query, max_num=num_images)
         st.success(f"Downloaded {num_images} images of '{query}'!")
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
-# Function to create a zip file
+
 def create_zip(directory):
     zip_filename = "downloads.zip"
     with zipfile.ZipFile(zip_filename, 'w') as zip_file:
@@ -28,10 +28,10 @@ def create_zip(directory):
                 zip_file.write(file_path, os.path.relpath(file_path, directory))
     return zip_filename
 
-# Function to send the email
+
 def send_email(recipient_email, filename):
-    sender_email = "spajjoint@gmail.com"  # Replace with your email
-    sender_password = "jmkuonvikubvjdtx"   # Use your app password if using Gmail
+    sender_email = "spajjoint@gmail.com"  
+    sender_password = "jmkuonvikubvjdtx"   
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -69,6 +69,5 @@ def run_app():
         else:
             st.error("Please fill in all fields.")
 
-# Execute the Streamlit app
 if __name__ == "__main__":
     run_app()
